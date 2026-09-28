@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Privacy policy for the ChatPiP browser extension.">
+    <meta name="theme-color" content="#090a0f">
+    <title>Privacy Policy — ChatPiP</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="index.html" aria-label="ChatPiP home"><span class="brand-mark" aria-hidden="true"></span><span>ChatPiP</span></a>
+        <div class="nav-links"><a href="index.html">Home</a><a href="support.html">Support</a><a href="privacy.html" aria-current="page">Privacy</a></div>
+      </nav>
+    </header>
+
+    <main class="legal" id="main">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="legal-lead">ChatPiP is designed to provide its features locally. The developer does not receive your streams, chats, browsing history or saved settings.</p>
+      <p class="legal-meta">Effective: September 27, 2026 · Version 1.7</p>
+
+      <section class="legal-card contact-box">
+        <h2>Developer and contact</h2>
+        <p>Developer/controller: <strong class="owner-value" data-owner-field="legal-name" data-owner="LgkNABVJNhEBBAc=">shown with JavaScript on</strong></p>
+        <p>Contact: <a class="contact-value owner-value" data-owner-field="support-email" data-owner="DgkNABVHB00OEx0VGjAEBQAdHEcTDAU=">shown with JavaScript on</a></p>
+        <p>Legal address, where required: <span class="owner-value" data-owner-field="legal-address" data-owner="IAkTGF0tGQYFTCcEG15DXlNYUFtDVVlWVCMdHwADBBgDDR8RDk1UNwwCDgkPDQ==">shown with JavaScript on</span></p>
+        <p>For help, feedback or privacy questions, see the <a class="inline-link" href="support.html">ChatPiP support page</a>.</p>
+      </section>
+
+      <section class="legal-card">
+        <h2>1. Scope and purpose</h2>
+        <p>ChatPiP is a browser extension whose single purpose is to keep user-selected YouTube and Twitch video plus the relevant live chat or YouTube comments visible in customizable picture-in-picture windows, including Dual Chat, favorites, streamer profiles, Stream Armory and multistream workflows with several selected streams.</p>
+        <p>This policy covers ChatPiP’s extension code, this website and purchase licensing. YouTube, Twitch, Google, Apple, Freemius and the browser or app stores process data under their own policies when you use their services.</p>
+      </section>
+
+      <section class="legal-card">
+        <h2>2. Data processed locally</h2>
+        <p>On supported pages, ChatPiP may process the following information on your device solely to deliver the feature you request:</p>
+        <ul>
+          <li>the current supported YouTube or Twitch URL, channel identifier, page title and browser-visible channel status;</li>
+          <li>the video and audio of the stream a picture-in-picture window is opened from; further streams play in the platform’s own embedded player, described in section 5;</li>
+          <li>visible public chat messages or YouTube comments and display names for discussion rendering, Dual Chat and read-only fallback;</li>
+          <li>active YouTube subtitle cues for the transient subtitle overlay;</li>
+          <li>possible third-party emote code strings used for the limited provider lookup described in section 5;</li>
+          <li>the public channel name or handle of a saved favorite, used for the live-status lookup described in section 5;</li>
+          <li>on macOS Safari, if the native workspace is open, a bounded snapshot of visible public chat or YouTube comments, source title and supported URL passed locally to the containing ChatPiP app;</li>
+          <li>on macOS Safari only, local aggregate chat-activity counts (such as messages per five seconds) that the native ChatPiP app uses for its automatic focus rules; the Chrome build does not sample chat activity.</li>
+        </ul>
+        <p>ChatPiP does not send this runtime information to the developer or to a ChatPiP server. Apart from the two limited lookups described in section 5 — the emote code and the live status of a saved favorite — mirrored messages, media streams and activity samples stay on the device, are transient and are not permanently stored by ChatPiP.</p>
+      </section>
+
+      <section class="legal-card">
+        <h2>3. Information saved on your device</h2>
+        <p>Chrome or Safari extension storage may hold your selected settings, including:</p>
+        <ul>
+          <li>chat position, chat zoom, overlay size, position and opacity;</li>
+          <li>favorites with platform, channel identifier, URL, thumbnail and last browser-visible title or status;</li>
+          <li>YouTube/Twitch Dual Chat pairings and chat arrangement;</li>
+          <li>per-streamer layouts and Stream Armory squads;</li>
+          <li>an older local Chrome trial record, if that trial had already started before the Freemius trial was introduced;</li>
+          <li>a random device UID and, after Chrome trial or purchase activation, the Freemius license key, installation/license/plan identifiers, bounded installation API token and validation/expiry state;</li>
+          <li>temporary picture-in-picture and Boss Key session state.</li>
+          <li>the Safari app’s local trial-clock high-water timestamp and the Safari extension’s latest sanitized Apple trial/lifetime entitlement state.</li>
+        </ul>
+        <p>The Chrome license record remains in local extension storage and is never copied to Chrome Sync. Activation and at-most-daily validation transmit the key and bounded installation/license metadata to Freemius as described in section 6; a previously validated license has a seven-day offline grace period. A legacy local trial may retain its old start and last-seen timestamps in Chrome Sync until that record is removed. New Chrome trials use Freemius and do not create a new synced trial clock. The Safari app separately obtains verified trial/lifetime transactions from Apple and sends only sanitized entitlement status and dates to its extension.</p>
+      </section>
+
+      <section class="legal-card">
+        <h2>4. Permissions</h2>
+        <h3>YouTube and Twitch site access</h3>
+        <p>Used to add ChatPiP controls and locally read the selected video, channel information and visible chat needed for the requested feature.</p>
+        <h3>No tab capture</h3>
+        <p>ChatPiP does not capture or record tabs and requests neither <code>tabCapture</code> nor <code>activeTab</code>. Content scripts run only on the YouTube and Twitch hosts named in the manifest.</p>
+        <h3>Storage</h3>
+        <p>Used to remember the preferences listed in section 3.</p>
+        <h3>Native messaging</h3>
+        <p>Only the macOS Safari build declares this permission, and it uses it exclusively to talk to the containing ChatPiP app on the same Mac. The Chrome build does not request native messaging at all — not even optionally.</p>
+        <h3>Safari loopback host access</h3>
+        <p>When the native ChatPiP workspace is open in macOS Safari, the extension sends bounded snapshots of up to 80 currently visible public chat messages or YouTube comments, allowlisted emote image URLs and up to six selected supported stream descriptors to the local app at <code>127.0.0.1:47831</code>. Requests and responses are HMAC-authenticated with timestamps and replay-resistant nonces; the locally generated pairing secret is delivered through Apple’s containing-app extension channel and is never sent over loopback.</p>
+      </section>
+
+      <section class="legal-card" id="limited-use">
+        <h2>5. Collection, sharing and Limited Use</h2>
+        <ul>
+          <li>No ChatPiP account or developer-operated runtime backend, analytics, advertising or tracking.</li>
+          <li>No sale or unrelated sharing of browsing activity, video, audio or chat with the developer, advertisers or data brokers.</li>
+          <li>No use for personalized advertising, creditworthiness, lending or unrelated profiling.</li>
+          <li>No human access to page content or user data through ChatPiP.</li>
+          <li>The Chrome and Safari extensions contain no remotely hosted program code.</li>
+        </ul>
+        <p>To display 7TV, BetterTTV and FrankerFaceZ emotes even when another Safari or Chrome extension has not already rendered them, ChatPiP downloads public global emote catalogs and may look up an emote-shaped code string with those providers. These requests use no browser credentials and no referrer. A provider receives the requested code and ordinary connection metadata such as the IP address under its own privacy policy; it does not receive the surrounding chat message, display name, Twitch cookies or browsing history from ChatPiP.</p>
+        <p>To show whether a saved favorite is currently streaming, ChatPiP asks the platform directly rather than a ChatPiP server: Twitch through a single bundled request to its public GraphQL route, YouTube through the channel’s public <code>/live</code> page. These requests use no browser credentials and no referrer, carry only the public channel name or handle, run only while a favorites list is on screen — never on a background schedule — and their results are cached for about a minute. A channel you already have open is answered from that tab and is never looked up over the network. Twitch and YouTube receive the requested channel name and ordinary connection metadata such as the IP address under their own privacy policies; they receive no chat content, no account data and no identifier for the user or the device from ChatPiP. When a lookup fails or times out, ChatPiP reports the channel as “unknown” rather than claiming it is offline.</p>
+        <h3 id="embedded-players">Embedded players</h3>
+        <p>A stream added to a picture-in-picture window plays in Twitch’s or YouTube’s official embedded player, loaded through ChatPiP’s embed page at <code>maf2414.github.io/chatpip-embed</code> on GitHub Pages. The page’s address carries only the channel name or video ID; the page stores nothing and sends nothing except the player’s state (ready, playing, muted) back to the ChatPiP window. GitHub receives ordinary connection data such as the IP address; Twitch and YouTube load their players under their own privacy policies, including their cookies and advertising.</p>
+        <p>ChatPiP’s use of information received from Google APIs adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements. Information is used only to provide or improve the user-facing ChatPiP feature the user requested.</p>
+      </section>
+
+      <section class="legal-card">
+        <h2>6. Chrome trial and purchase processing</h2>
+        <p>Starting the Chrome trial requires an email address but no payment method. Freemius processes that address, ordinary connection/device information and risk signals to create the seven-day trial and deliver its key. If you buy the permanent unlock, Freemius may additionally process name and billing/payment details to complete payment, calculate tax, issue a receipt/key, prevent fraud and handle refunds or disputes under its notices.</p>
+        <p>On activation/validation the extension sends Freemius the license key, a random 128-bit installation UID, installation title, Freemius installation/license/plan identifiers and ordinary request metadata. Freemius returns bounded installation credentials and license state. No stream, chat, browsing history, favorite or setting is included. Safari’s free trial and lifetime unlock are separate Apple Non-Consumable IAPs; Apple processes purchase/account data and ChatPiP receives verified StoreKit transaction status, not full card details.</p>
+      </section>
+
+      <section class="legal-card">
+        <h2>7. This website</h2>
+        <p>This website does not set ChatPiP cookies and does not include analytics, advertising, tracking pixels, forms or remote fonts. The purchase page loads the Freemius checkout script; visiting that page lets Freemius receive ordinary connection information such as your IP address before you start a trial or purchase. All other pages contain no third-party scripts. The hosting provider may also process standard request information such as IP address, timestamp and requested path under its own policy.</p>
+        <p>The purchase page can also hand you over to the installed extension. Pages on this website’s origin are the only pages allowed to message ChatPiP, the single accepted message merely opens the extension’s activation view in a new tab, and no license key, page content or other data is exchanged in either direction.</p>
+      </section>
+
+      <section class="legal-card">
+        <h2>8. Access, deletion and security</h2>
+        <p>ChatPiP does not maintain a runtime browsing profile. You can remove local feature/license settings by deactivating the device or uninstalling ChatPiP; the Freemius portal manages keys and activations. Safari purchases can be restored and managed through Apple. Provider records may be retained where required for fulfillment, support, fraud prevention, tax or disputes.</p>
+        <p>ChatPiP limits host access to supported YouTube and Twitch pages, limits native messaging to its own local macOS app and avoids remote code. No software can guarantee absolute security; please keep your browser and operating system updated.</p>
+      </section>
+
+      <section class="legal-card">
+        <h2>9. Children</h2>
+        <p>ChatPiP does not provide accounts or knowingly collect personal information from children. Use of YouTube, Twitch and the relevant browser or app store remains subject to those services’ age requirements and parental controls.</p>
+      </section>
+
+      <section class="legal-card">
+        <h2>10. Changes</h2>
+        <p>If ChatPiP’s data practices materially change, this page will be updated before the changed practice is released, with a revised effective date. Privacy questions can be sent through the contact method above.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer"><div class="footer-inner"><span>© 2026 ChatPiP</span><div class="footer-links"><a href="index.html">Home</a><a href="support.html">Support</a><a href="terms.html">Terms</a></div></div></footer>
+    <script src="owner.js" defer></script>
+  </body>
+</html>

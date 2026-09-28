@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Try ChatPiP free for 7 days or buy it once for Chrome.">
+    <meta name="theme-color" content="#090a0f">
+    <title>Buy ChatPiP for Chrome</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="index.html" aria-label="ChatPiP home"><span class="brand-mark" aria-hidden="true"></span><span>ChatPiP</span></a>
+        <div class="nav-links"><a href="index.html">Home</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a></div>
+      </nav>
+    </header>
+
+    <main class="legal" id="main">
+      <p class="eyebrow">ChatPiP for Chrome</p>
+      <h1>Try it first. Buy it once.</h1>
+      <p class="legal-lead">All features for 7 days. No card. No subscription.</p>
+
+      <section class="legal-card purchase-summary">
+        <p class="plan-name">Try free</p>
+        <h2>7 days</h2>
+        <ul>
+          <li>Every current feature is included.</li>
+          <li>Enter your email and we’ll send you a license key.</li>
+          <li>No card and no automatic charge.</li>
+        </ul>
+        <a class="button button-primary trial-action" href="https://checkout.freemius.com/app/36809/plan/61021/?billing_cycle=lifetime&amp;currency=eur&amp;disable_licenses_selector=true&amp;licenses=1&amp;show_upsells=false&amp;trial=free">Try free for 7 days</a>
+      </section>
+
+      <section class="legal-card purchase-summary">
+        <p class="plan-name">Keep ChatPiP</p>
+        <h2>€4.99</h2>
+        <ul>
+          <li>€4.99 once, plus tax where required.</li>
+          <li>No subscription or recurring charge.</li>
+          <li>Keep your key to restore access later.</li>
+        </ul>
+        <a class="button button-secondary" data-store-link="chrome" href="https://chromewebstore.google.com/detail/afnglohgkkpmbeggclalkohkdjbfadai">Install ChatPiP</a>
+        <a class="button button-primary plan-action" href="https://checkout.freemius.com/app/36809/plan/61021/?billing_cycle=lifetime&amp;currency=eur&amp;disable_licenses_selector=true&amp;licenses=1&amp;show_upsells=false">Buy ChatPiP</a>
+        <p><strong>Refund policy:</strong> <span data-owner-field="chrome-refund-policy">Full refund within 14 days of purchase, no questions asked.</span> Mandatory consumer rights remain unaffected.</p>
+      </section>
+
+      <section class="legal-card" id="post-purchase" hidden>
+        <h2 id="completion-title">Your key is ready</h2>
+        <ol>
+          <li>Check <strong id="buyer-email">your email</strong> for the license key.</li>
+          <li>Paste it into ChatPiP under “Activate access”.</li>
+        </ol>
+        <button class="button button-primary" id="open-activation" type="button">Open ChatPiP activation</button>
+        <button class="button button-secondary" id="resend-email" type="button" hidden>Resend license email</button>
+        <p id="open-activation-fallback" hidden>Open ChatPiP from the Chrome toolbar, open the access page and paste your key under <strong>Activate access</strong>.</p>
+      </section>
+
+      <p class="legal-lead">Payments and licenses are securely handled by Freemius. Before paying, check that the total shows €4.99 plus applicable tax and no recurring charge. <a class="inline-link" href="support.html">Contact support</a> if it does not.</p>
+    </main>
+
+    <footer class="site-footer"><div class="footer-inner"><span>© 2026 ChatPiP</span><div class="footer-links"><a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div></footer>
+
+    <script type="application/json" id="chatpip-commerce">{"productId":"36809","planId":"61021","extensionId":"afnglohgkkpmbeggclalkohkdjbfadai"}</script>
+    <script src="https://checkout.freemius.com/js/v1/" defer></script>
+    <script>
+      // Progressive enhancement: without this script (or before the values are
+      // configured) the checkout button stays a plain link to the Freemius
+      // Hosted Checkout, and no post-purchase panel is shown.
+      window.addEventListener("DOMContentLoaded", () => {
+        let commerce = null;
+        try {
+          commerce = JSON.parse(document.getElementById("chatpip-commerce").textContent);
+        } catch (error) {
+          return;
+        }
+        const configured = value => typeof value === "string" && value !== "" && !value.includes("{{");
+        const panel = document.getElementById("post-purchase");
+        const completionTitle = document.getElementById("completion-title");
+        const buyerEmail = document.getElementById("buyer-email");
+        const openActivation = document.getElementById("open-activation");
+        const openFallback = document.getElementById("open-activation-fallback");
+        const resendButton = document.getElementById("resend-email");
+        let resendEndpoint = "";
+
+        function showCompletion(data) {
+          completionTitle.textContent = data?.trial ? "Your free trial is ready" : "Your purchase is ready";
+          if (typeof data?.user?.email === "string" && data.user.email) buyerEmail.textContent = data.user.email;
+          resendEndpoint = typeof data?.user?.resend_email_endpoint === "string" ? data.user.resend_email_endpoint : "";
+          resendButton.hidden = resendEndpoint === "";
+          panel.hidden = false;
+          panel.scrollIntoView({ behavior: "smooth" });
+        }
+
+        openActivation.addEventListener("click", async () => {
+          const runtime = window.chrome && window.chrome.runtime;
+          if (!configured(commerce.extensionId) || !runtime || typeof runtime.sendMessage !== "function") {
+            openFallback.hidden = false;
+            return;
+          }
+          try {
+            const reply = await runtime.sendMessage(commerce.extensionId, { type: "CHATPIP_OPEN_ACTIVATION" });
+            openFallback.hidden = reply && reply.ok === true;
+          } catch (error) {
+            openFallback.hidden = false;
+          }
+        });
+
+        resendButton.addEventListener("click", async () => {
+          if (!resendEndpoint) return;
+          resendButton.disabled = true;
+          try {
+            await fetch(resendEndpoint, { method: "POST" });
+            resendButton.textContent = "License email sent again";
+          } catch (error) {
+            resendButton.disabled = false;
+          }
+        });
+
+        const purchaseAction = document.querySelector(".plan-action");
+        const trialAction = document.querySelector(".trial-action");
+        if (!purchaseAction || !trialAction || !configured(commerce.productId) || !configured(commerce.planId) || !window.FS || !window.FS.Checkout) return;
+        const checkout = new window.FS.Checkout({ product_id: commerce.productId });
+        const openCheckout = (event, trial = false) => {
+          event.preventDefault();
+          checkout.open({
+            plan_id: commerce.planId,
+            billing_cycle: "lifetime",
+            currency: "eur",
+            licenses: 1,
+            disable_licenses_selector: true,
+            show_upsells: false,
+            language: "auto",
+            ...(trial ? { trial: "free" } : {}),
+            purchaseCompleted: showCompletion,
+            success: showCompletion
+          });
+        };
+        purchaseAction.addEventListener("click", event => openCheckout(event));
+        trialAction.addEventListener("click", event => openCheckout(event, true));
+      });
+    </script>
+  </body>
+</html>
