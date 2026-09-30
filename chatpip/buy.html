@@ -55,6 +55,7 @@
         </ol>
         <button class="button button-primary" id="open-activation" type="button">Open ChatPiP activation</button>
         <button class="button button-secondary" id="resend-email" type="button" hidden>Resend license email</button>
+        <p id="resend-email-error" role="alert" hidden>Email request failed. Try again or <a class="inline-link" href="support.html">contact support</a> to get your key.</p>
         <p id="open-activation-fallback" hidden>Open ChatPiP from the Chrome toolbar, open the access page and paste your key under <strong>Activate access</strong>.</p>
       </section>
 
@@ -83,6 +84,7 @@
         const openActivation = document.getElementById("open-activation");
         const openFallback = document.getElementById("open-activation-fallback");
         const resendButton = document.getElementById("resend-email");
+        const resendError = document.getElementById("resend-email-error");
         let resendEndpoint = "";
 
         function showCompletion(data) {
@@ -111,11 +113,14 @@
         resendButton.addEventListener("click", async () => {
           if (!resendEndpoint) return;
           resendButton.disabled = true;
+          resendError.hidden = true;
           try {
-            await fetch(resendEndpoint, { method: "POST" });
-            resendButton.textContent = "License email sent again";
+            const response = await fetch(resendEndpoint, { method: "POST" });
+            if (!response.ok) throw new Error("Email request failed");
+            resendButton.textContent = "License email requested";
           } catch (error) {
             resendButton.disabled = false;
+            resendError.hidden = false;
           }
         });
 
