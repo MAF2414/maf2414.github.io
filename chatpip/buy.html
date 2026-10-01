@@ -27,11 +27,12 @@
         <h2>7 days</h2>
         <ul>
           <li>Every current feature is included.</li>
-          <li>Enter your email and we’ll send you a license key.</li>
-          <li>No card and no automatic charge.</li>
+          <li>From version 1.20, your trial starts automatically when you install ChatPiP.</li>
+          <li>No email, card or automatic charge.</li>
         </ul>
-        <a class="button button-primary trial-action" href="https://checkout.freemius.com/app/36809/plan/61021/?billing_cycle=lifetime&amp;currency=eur&amp;disable_licenses_selector=true&amp;licenses=1&amp;show_upsells=false&amp;trial=free">Try free for 7 days</a>
-        <p>Getting started? <a class="inline-link" data-store-link="chrome" href="https://chromewebstore.google.com/detail/afnglohgkkpmbeggclalkohkdjbfadai">Install ChatPiP in Chrome</a>, then paste your emailed key under <strong>Activate access</strong>.</p>
+        <a class="button button-primary trial-install" data-store-link="chrome" href="https://chromewebstore.google.com/detail/afnglohgkkpmbeggclalkohkdjbfadai">Install and try for 7 days</a>
+        <p>Getting started? <a class="inline-link" data-store-link="chrome" href="https://chromewebstore.google.com/detail/afnglohgkkpmbeggclalkohkdjbfadai">Install ChatPiP in Chrome</a>, then open a Twitch or YouTube stream and use the ChatPiP player button. Your remaining trial time appears in the extension popup.</p>
+        <p>Automatic trials require version 1.20 or newer. Check the version currently available in the Chrome Web Store. If your installed version asks for a key, you can still <a class="inline-link" href="https://checkout.freemius.com/app/36809/plan/61021/?billing_cycle=lifetime&amp;currency=eur&amp;disable_licenses_selector=true&amp;licenses=1&amp;show_upsells=false&amp;trial=free">start the email trial</a> and activate the key.</p>
       </section>
 
       <section class="legal-card purchase-summary">
@@ -125,10 +126,9 @@
         });
 
         const purchaseAction = document.querySelector(".plan-action");
-        const trialAction = document.querySelector(".trial-action");
-        if (!purchaseAction || !trialAction || !configured(commerce.productId) || !configured(commerce.planId) || !window.FS || !window.FS.Checkout) return;
+        if (!purchaseAction || !configured(commerce.productId) || !configured(commerce.planId) || !window.FS || !window.FS.Checkout) return;
         const checkout = new window.FS.Checkout({ product_id: commerce.productId });
-        const openCheckout = (event, trial = false) => {
+        const openCheckout = event => {
           event.preventDefault();
           checkout.open({
             plan_id: commerce.planId,
@@ -138,13 +138,11 @@
             disable_licenses_selector: true,
             show_upsells: false,
             language: "auto",
-            ...(trial ? { trial: "free" } : {}),
             purchaseCompleted: showCompletion,
             success: showCompletion
           });
         };
         purchaseAction.addEventListener("click", event => openCheckout(event));
-        trialAction.addEventListener("click", event => openCheckout(event, true));
       });
     </script>
   </body>

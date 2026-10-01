@@ -21,7 +21,7 @@
       <p class="eyebrow">Legal</p>
       <h1>Privacy Policy</h1>
       <p class="legal-lead">ChatPiP is designed to provide its features locally. The developer does not receive your streams, chats, browsing history or saved settings.</p>
-      <p class="legal-meta">Effective: September 27, 2026 · Version 1.7</p>
+      <p class="legal-meta">Effective: October 1, 2026 · Version 1.8</p>
 
       <section class="legal-card contact-box">
         <h2>Developer and contact</h2>
@@ -61,12 +61,12 @@
           <li>favorites with platform, channel identifier, URL, thumbnail and last browser-visible title or status;</li>
           <li>YouTube/Twitch Dual Chat pairings and chat arrangement;</li>
           <li>per-streamer layouts and Stream Armory squads;</li>
-          <li>an older local Chrome trial record, if that trial had already started before the Freemius trial was introduced;</li>
+          <li>the Chrome trial start and last-seen timestamps;</li>
           <li>a random device UID and, after Chrome trial or purchase activation, the Freemius license key, installation/license/plan identifiers, bounded installation API token and validation/expiry state;</li>
           <li>temporary picture-in-picture and Boss Key session state.</li>
           <li>the Safari app’s local trial-clock high-water timestamp and the Safari extension’s latest sanitized Apple trial/lifetime entitlement state.</li>
         </ul>
-        <p>The Chrome license record remains in local extension storage and is never copied to Chrome Sync. Activation and at-most-daily validation transmit the key and bounded installation/license metadata to Freemius as described in section 6; a previously validated license has a seven-day offline grace period. A legacy local trial may retain its old start and last-seen timestamps in Chrome Sync until that record is removed. New Chrome trials use Freemius and do not create a new synced trial clock. The Safari app separately obtains verified trial/lifetime transactions from Apple and sends only sanitized entitlement status and dates to its extension.</p>
+        <p>The Chrome license record remains in local extension storage and is never copied to Chrome Sync. Activation and at-most-daily validation transmit the key and bounded installation/license metadata to Freemius as described in section 6; a previously validated license has a seven-day offline grace period. From version 1.20, the Chrome trial starts automatically at installation. Its start and last-seen timestamps are stored locally and, when available, in Chrome Sync. The earliest known start is preserved across updates and sync reconciliation. The Safari app separately obtains verified trial/lifetime transactions from Apple and sends only sanitized entitlement status and dates to its extension.</p>
       </section>
 
       <section class="legal-card">
@@ -101,13 +101,13 @@
 
       <section class="legal-card">
         <h2>6. Chrome trial and purchase processing</h2>
-        <p>Starting the Chrome trial requires an email address but no payment method. Freemius processes that address, ordinary connection/device information and risk signals to create the seven-day trial and deliver its key. If you buy the permanent unlock, Freemius may additionally process name and billing/payment details to complete payment, calculate tax, issue a receipt/key, prevent fraud and handle refunds or disputes under its notices.</p>
+        <p>From version 1.20, the seven-day Chrome trial starts automatically at installation without an email address, license key or payment method. It uses browser storage and Chrome Sync rather than Freemius registration. Older versions use the email-based Freemius trial flow; Freemius processes the email address, ordinary connection/device information and risk signals to deliver and manage that key. Existing Freemius trial keys remain supported until their original expiry. If you buy the permanent unlock, Freemius may process email address, name, ordinary connection/device information, risk signals and billing/payment details to complete payment, calculate tax, issue a receipt/key, prevent fraud and handle refunds or disputes under its notices.</p>
         <p>On activation/validation the extension sends Freemius the license key, a random 128-bit installation UID, installation title, Freemius installation/license/plan identifiers and ordinary request metadata. Freemius returns bounded installation credentials and license state. No stream, chat, browsing history, favorite or setting is included. Safari’s free trial and lifetime unlock are separate Apple Non-Consumable IAPs; Apple processes purchase/account data and ChatPiP receives verified StoreKit transaction status, not full card details.</p>
       </section>
 
       <section class="legal-card">
         <h2>7. This website</h2>
-        <p>This website does not set ChatPiP cookies and does not include analytics, advertising, tracking pixels, forms or remote fonts. The purchase page loads the Freemius checkout script; visiting that page lets Freemius receive ordinary connection information such as your IP address before you start a trial or purchase. All other pages contain no third-party scripts. The hosting provider may also process standard request information such as IP address, timestamp and requested path under its own policy.</p>
+        <p>This website does not set ChatPiP cookies and does not include analytics, advertising, tracking pixels, forms or remote fonts. The purchase page loads the Freemius checkout script; visiting that page lets Freemius receive ordinary connection information such as your IP address before you start a purchase. All other pages contain no third-party scripts. The hosting provider may also process standard request information such as IP address, timestamp and requested path under its own policy.</p>
         <p>The purchase page can also hand you over to the installed extension. Pages on this website’s origin are the only pages allowed to message ChatPiP, the single accepted message merely opens the extension’s activation view in a new tab, and no license key, page content or other data is exchanged in either direction.</p>
       </section>
 
